@@ -11,17 +11,21 @@
   side: left
 
 - title: Volunteer
-  url: "/volunteer"
+  url: "/volunteer/"
   side: left
 
 - title: Events
-  url: "/events"
+  url: "/events/"
   side: left
 
 - title: Blog
   url: "/blog/"
   side: left
 
-- title: Contact
-  url: "/contact/"
+- title: Become a Founder
+  url: "/founders/"
+  side:left
+
+- title: Locations
+  url: "/locations/"
   side: left
