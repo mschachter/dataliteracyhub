@@ -22,9 +22,9 @@
   url: "/blog/"
   side: left
 
-- title: Become a Founder
-  url: "/founders/"
-  side:left
+- title: Start a Hub
+  url: "/start_a_hub/"
+  side: left
 
 - title: Locations
   url: "/locations/"
