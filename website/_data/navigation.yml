@@ -6,9 +6,9 @@
   url: "/apply/"
   side: left
 
-- title: Curriculum
-  url: "/curriculum/"
-  side: left
+- title: Donate
+  url: "/donate/"
+  side: "left"
 
 - title: Volunteer
   url: "/volunteer/"
@@ -18,14 +18,14 @@
   url: "/events/"
   side: left
 
-- title: Blog
-  url: "/blog/"
+- title: Curriculum
+  url: "/curriculum/"
   side: left
 
 - title: Start a Hub
   url: "/start_a_hub/"
   side: left
 
-- title: Locations
-  url: "/locations/"
+- title: Contact
+  url: "/contact/"
   side: left
