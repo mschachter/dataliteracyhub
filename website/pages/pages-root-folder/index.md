@@ -4,9 +4,12 @@
 # inserted automagically in the webpage. To make
 # this work, you have to use › layout: frontpage
 #
+
+isFrontPage: "yes"
+
 layout: frontpage
 header:
-  image_fullwidth: header_unsplash_12.jpg
+
 widget1:
   title: "Learn Data Science"
   url: '/apply'
@@ -16,7 +19,7 @@ widget1:
 widget2:
   title: "Teach People"
   url: '/volunteer/'
-  text: 'Transfer your knowledge! We are looking for volunteers, and teaching is a requirement for advanced students.'
+  text: 'Transfer your knowledge! We are looking for volunteers, and teaching is a requirement for advancing students.'
   image: frontpage_widget_teach_302x182.jpg
 
 widget3:
@@ -28,7 +31,9 @@ widget3:
 permalink: /index.html
 ---
 
-Lolz here is some extra text.
+<script>
+startNetwork();
+</script>
 
 <div id="videoModal" class="reveal-modal large" data-reveal="">
   <div class="flex-video widescreen vimeo" style="display: block;">
