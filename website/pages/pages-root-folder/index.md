@@ -13,26 +13,26 @@ header:
 widget1:
   title: "Learn Data Science"
   url: '/apply'
-  image: frontpage_widget_learn.png
+  image: frontpage_widget_learn_302x182_plots.png
   text: 'We teach Math, Programming, and Data from the ground up. Whether student or working professional, our <a href="/curriculum/">curriculum</a> fits you.'
 
 widget2:
   title: "Teach People"
   url: '/volunteer/'
   text: 'Transfer your knowledge! We are looking for volunteers, and teaching is a requirement for advancing students.'
-  image: frontpage_widget_teach_302x182.jpg
+  image: frontpage_widget_teach_302x182_inverted.jpg
 
 widget3:
-  title: "Our Philosophy"
+  title: "Our Mission"
   url: '/start_a_hub'
   image: frontpage_widget_philosophy_302x182.png
-  text: 'Maximize intellectual growth and minimize burnout. Keep classes affordable, small, and personalized. Be nonprofit.'
+  text: 'Maximize intellectual growth and minimize burnout. Keep classes affordable, small, and personalized. Be nonprofit and open-source.'
 
 permalink: /index.html
 ---
 
 <script>
-startNetwork();
+startNetwork(5);
 </script>
 
 <div id="videoModal" class="reveal-modal large" data-reveal="">

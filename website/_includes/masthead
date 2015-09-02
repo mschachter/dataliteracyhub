@@ -1,8 +1,4 @@
 <div id="masthead-no-image-header">
-	<div class="row">
-		<div class="small-12 columns">
-			<svg class="dlh_banner"></svg>
-		</div><!-- /.small-12.columns -->
-	</div><!-- /.row -->
+	<svg class="dlh_banner"></svg>	
 </div>
 

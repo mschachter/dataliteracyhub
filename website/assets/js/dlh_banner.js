@@ -3,18 +3,19 @@ var networkState;
 
 initNetwork = function()
 {
-   var colorScale = d3.scale.category20b();
+   var enclosingDiv = document.getElementById("masthead-no-image-header");
+   var brect = enclosingDiv.getBoundingClientRect();
 
-   var width = 1000;
-   var height = 300;
+   var width = brect.width;
+   var height = brect.height;
    var svg = d3.select(".dlh_banner")
 	   .attr("width", width)
 	   .attr("height", height);
 
-   var boxLen = 50;
+   var boxLen = 25;
 
-   var nrows = height / boxLen;
-   var ncols = width / boxLen;
+   var nrows = Math.floor(height / boxLen);
+   var ncols = Math.floor(width / boxLen);
 
    console.log("nrows=" + nrows + ", ncols=" + ncols);
 
@@ -26,14 +27,14 @@ initNetwork = function()
    for (i = 0; i < nrows; i++) {
       for (j = 0; j < ncols; j++) {
          
-         networkState[i][j] = Math.floor(20*Math.random());
+         networkState[i][j] = 0.1*Math.random();
 
          svg.append("rect")
             .attr("x", j*boxLen)
             .attr("y", i*boxLen)
             .attr("width", boxLen)
             .attr("height", boxLen)
-            .attr("fill", colorScale(networkState[i][j]))
+            .attr("fill", mapStateToColor(networkState[i][j]))
             .attr("stroke", "#000")
             .attr("opacity", 0.75);
       }
@@ -53,9 +54,11 @@ updateNetwork = function()
    // to be mapped to each rectangle on the svg
    var data = [];
 
-   var maxNoise = 2;
+   var maxNoise = 0.1;
+   var timeConstant = 0.9;
 
    var i,j;
+   var s,ds;
    var stateAbove, stateBelow, stateLeft, stateRight;
    for (i = 0; i < nrows; i++) {
       for (j = 0; j < ncols; j++) {
@@ -67,7 +70,7 @@ updateNetwork = function()
          }
          // get state of neighbor below or roll to top
          if (i < nrows-1) {
-            stateBelow = networkState[i][j];
+            stateBelow = networkState[i+1][j];
          } else {
             stateBelow = networkState[nrows-1][j];
          }
@@ -85,21 +88,20 @@ updateNetwork = function()
          }
 
          // compute the average state
-         var meanState = (stateAbove + stateBelow + stateLeft + stateRight) / 4.0;
+         var maxState = math.max([stateAbove, stateBelow, stateLeft, stateRight]);
 
          // make some noise
-         var noise = Math.floor(maxNoise*2*Math.random()) - maxNoise;
-
-         var newState = 0;
-         // certain regions stick together
-         if ((i > ncols/2) && (i > ncols/6) && (j > nrows/4) && (j < nrows/3)) {
-            newState = meanState;
-         } else {
-            newState = math.max([0, math.min([20, networkState[i][j] + noise])]);
+         var noise = 0.0*Math.random();
+         if (Math.random() > 0.99) {
+            noise = 1;   
          }
 
-         // be the mean state
-         networkState[i][j] = newState;
+         // exponential decay plus noise plus neighbors
+         var s = networkState[i][j];
+         var ds = -timeConstant*s + noise + 5e-1*maxState;
+
+         // update state using dynamics
+         networkState[i][j] = math.min([1, math.max([0, s + ds])]);
 
          data.push([i, j]);
       }
@@ -109,7 +111,16 @@ updateNetwork = function()
    var svg = d3.select(".dlh_banner");
    svg.selectAll("rect")
       .data(data)
-      .attr("fill", function(d) { return colorScale(networkState[d[0]][d[1]]); } );
+      .attr("fill", function(d) { return mapStateToColor(networkState[d[0]][d[1]]); } );
+}
+
+mapStateToColor = function(s)
+{
+   var r,g,b;
+   r = 0;
+   b = Math.floor(s*255);
+   g = Math.floor(s*125);
+   return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 startNetwork = function(frameRate)
